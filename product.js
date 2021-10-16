@@ -4,7 +4,7 @@ export default class Product {
     this._name = name.toUpperCase();
     this._quantity = quantity;
     this._cost = cost;
-    this._position;
+    this._next = null;
   }
 
   getName() {

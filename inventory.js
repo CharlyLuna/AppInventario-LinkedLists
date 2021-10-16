@@ -1,16 +1,26 @@
 export default class Inventory {
   constructor() {
-    this._products = new Array();
+    this._start = null;
   }
 
   add(product) {
-    if (this.search(product.getCode()) == null && this._products.length <= 20) {
-      this._products.push(product);
+    if (this._start == null) {
+      this._start = product;
+      return true;
+    } else {
+      this._addProduct(this._start, product);
+      console.log(this._start);
       return true;
     }
-    return false;
   }
-
+  _addProduct(node, product) {
+    if (node._next == null) {
+      node._next = product;
+    } else {
+      this._addProduct(node._next, product);
+    }
+  }
+  /*
   search(code) {
     let result = null;
     this._products.forEach((product) => {
@@ -82,5 +92,5 @@ export default class Inventory {
       }
     });
     return pos;
-  }
+  }*/
 }

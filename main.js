@@ -49,7 +49,7 @@ class App {
         "<h3>Este producto no puede ser agregado porque ya existe ó excede el limite de productos</h3>";
     }
   };
-
+  /*
   searchProduct = () => {
     let info = document.getElementById("info");
     let code = document.getElementById("txtCode").value;
@@ -113,6 +113,6 @@ class App {
       return;
     }
     info.innerHTML += "<h3>Producto insertado</h3>";
-  };
+  }; */
 }
 new App();
