@@ -20,17 +20,18 @@ export default class Inventory {
       this._addProduct(node._next, product);
     }
   }
-  /*
   search(code) {
-    let result = null;
-    this._products.forEach((product) => {
-      if (code == product.getCode()) {
-        result = product;
+    let aux = this._start;
+    while (aux != null) {
+      if (aux.getCode() == code) {
+        return aux;
       }
-    });
-    return result;
+      aux = aux._next;
+    }
+    return null;
   }
 
+  /*
   list() {
     let i;
     let message = "";
