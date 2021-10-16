@@ -31,29 +31,39 @@ export default class Inventory {
     return null;
   }
 
-  /*
   list() {
-    let i;
-    let message = "";
-    for (i = 0; i < this._products.length; i++) {
-      message += `<div>
-        ${this._products[i].getCode()} - ${this._products[i].getName()}  
-        <div>`;
+    if (this._start == null) {
+      return "No se han encontrado productos";
+    } else {
+      return this._listProducts(this._start);
     }
-    return message;
+  }
+
+  _listProducts(node) {
+    if (node._next == null) {
+      return node.infoHtml();
+    } else {
+      return `${node.infoHtml()} ${this._listProducts(node._next)}`;
+    }
   }
 
   inverseList() {
-    let i = this._products.length - 1;
-    let message = "";
-    for (; i >= 0; i--) {
-      message += `<div>
-        ${this._products[i].getCode()} - ${this._products[i].getName()}   
-        <div>`;
+    if (this._start == null) {
+      return "No se han encontrado productos";
+    } else {
+      return this._listProductsInv(this._start);
     }
-    return message;
   }
 
+  _listProductsInv(node) {
+    if (node._next == null) {
+      return node.infoHtml();
+    } else {
+      return `${this._listProductsInv(node._next)} ${node.infoHtml()}`;
+    }
+  }
+
+  /*
   insert(product, position) {
     if (position && position <= this._products.length && this.add(product)) {
       let i = this._products.length - 1;

@@ -60,12 +60,12 @@ class App {
     }
   };
 
-  /*
   listProducts = () => {
     let info = document.getElementById("info");
     info.innerHTML += `<p>LISTADO DE PRODUCTOS: ${this._inventory.list()}<p>`;
   };
 
+  /*
   deleteProduct = () => {
     let info = document.getElementById("info");
     let code = document.getElementById("txtCode").value;
@@ -75,13 +75,13 @@ class App {
       return;
     }
     info.innerHTML += `<h3>Se eliminó: ${deleted.infoHtml()}<h3> `;
-  };
+  }; */
 
   listInv = () => {
     let info = document.getElementById("info");
     info.innerHTML += `<p>LISTADO INVERTIDO DE PRODUCTOS: ${this._inventory.inverseList()}<p>`;
   };
-
+  /*
   insertProduct = () => {
     let info = document.getElementById("info");
     let inpCode = document.getElementById("txtCode");
