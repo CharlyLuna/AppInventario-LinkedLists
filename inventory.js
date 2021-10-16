@@ -76,32 +76,26 @@ export default class Inventory {
       return this._products;
     }
     return false;
-  }
+  } */
 
   delete(code) {
-    // buscamos primero si esta el producto
-    if (this.search(code) == null) {
-      return null;
+    let deleted = null;
+    if (code == this._start.getCode()) {
+      deleted = this._start;
+      this._start = this._start._next;
+      deleted._next = null;
+      return deleted;
     }
-    let pos = this._productPos(code);
-    let i = pos;
-    let j = i + 1;
-    //movemos de posicion al producto hasta el final del array;
-    for (; j < this._products.length; i++, j++) {
-      let value = this._products[i];
-      this._products[i] = this._products[j];
-      this._products[j] = value;
-    }
-    return this._products.pop();
-  }
-
-  _productPos(code) {
-    let pos;
-    this._products.forEach((p, index) => {
-      if (code == p.getCode()) {
-        pos = index;
+    let aux = this._start;
+    while (aux._next != null && deleted == null) {
+      if (aux._next.getCode() == code) {
+        deleted = aux._next;
+        aux._next = aux._next._next;
+        deleted._next = null;
+      } else {
+        aux = aux._next;
       }
-    });
-    return pos;
-  }*/
+    }
+    return deleted;
+  }
 }
