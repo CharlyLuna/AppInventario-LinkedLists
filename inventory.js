@@ -7,11 +7,12 @@ export default class Inventory {
     if (this._start == null) {
       this._start = product;
       return true;
-    } else {
+    } else if (!this.search(product.getCode()) && this._howMany() < 20) {
       this._addProduct(this._start, product);
       console.log(this._start);
       return true;
     }
+    return false;
   }
   _addProduct(node, product) {
     if (node._next == null) {
@@ -63,20 +64,37 @@ export default class Inventory {
     }
   }
 
-  /*
   insert(product, position) {
-    if (position && position <= this._products.length && this.add(product)) {
-      let i = this._products.length - 1;
-      let j = i - 1;
-      for (; i >= position; i--, j--) {
-        let value = this._products[i];
-        this._products[i] = this._products[j];
-        this._products[j] = value;
-      }
-      return this._products;
+    /*ponemos la condicion de que el producto no exista, la posicion sea valida y 
+    la cantidad de productos no exceda el limite (20)
+    */
+    if (
+      this.search(product.getCode()) != null ||
+      position > this._howMany() + 1 ||
+      this._howMany() == 20
+    ) {
+      return false;
     }
-    return false;
-  } */
+    let count = 2;
+    let aux = this._start;
+    //Si la posicion es el primero, solo cambiamos el inicio y hacemos que apunte al antiguo inicio
+    if (position == 1) {
+      this._start = product;
+      this._start._next = aux;
+    }
+    while (count <= position) {
+      //cuando pos y count sean iguales, la insercion se quiere hacer en el .next del producto que tenemos fijado
+      if (position == count) {
+        // el producto se inserta despues del elemento que tenemos fijado en aux
+        product._next = aux._next;
+        aux._next = product;
+      }
+      aux = aux._next;
+      count++;
+    }
+    console.log(this._start);
+    return true;
+  }
 
   delete(code) {
     let deleted = null;
@@ -97,5 +115,14 @@ export default class Inventory {
       }
     }
     return deleted;
+  }
+  _howMany() {
+    let aux = this._start;
+    let count = 0;
+    while (aux != null) {
+      count++;
+      aux = aux._next;
+    }
+    return count;
   }
 }

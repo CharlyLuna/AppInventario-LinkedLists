@@ -80,7 +80,7 @@ class App {
     let info = document.getElementById("info");
     info.innerHTML += `<p>LISTADO INVERTIDO DE PRODUCTOS: ${this._inventory.inverseList()}<p>`;
   };
-  /*
+
   insertProduct = () => {
     let info = document.getElementById("info");
     let inpCode = document.getElementById("txtCode");
@@ -100,18 +100,18 @@ class App {
       inpCost.value = "";
     } else {
       info.innerHTML +=
-        "<h3>ERROR:Todos los campos deben llenarse para agregar el producto y el código no debe ser negativo</h3>";
+        "<h3>ERROR:Todos los campos deben llenarse para insertar el producto y el código no debe ser negativo</h3>";
       return;
     }
     let product = new Product(code, name, quantity, cost);
     let position = document.getElementById("txtPos").value;
-    let inserted = this._inventory.insert(product, position);
+    let inserted = this._inventory.insert(product, Number(position));
     if (!inserted) {
       info.innerHTML +=
         "<h3>Este producto no ha podido ser insertado porque ya existe ó no se puso un valor valido en la posición</h3>";
       return;
     }
     info.innerHTML += "<h3>Producto insertado</h3>";
-  }; */
+  };
 }
 new App();
