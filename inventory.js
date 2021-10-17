@@ -9,7 +9,6 @@ export default class Inventory {
       return true;
     } else if (!this.search(product.getCode()) && this._howMany() < 20) {
       this._addProduct(this._start, product);
-      console.log(this._start);
       return true;
     }
     return false;
@@ -92,7 +91,6 @@ export default class Inventory {
       aux = aux._next;
       count++;
     }
-    console.log(this._start);
     return true;
   }
 
